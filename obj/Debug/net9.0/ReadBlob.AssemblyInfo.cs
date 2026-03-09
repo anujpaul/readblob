@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("ReadBlob")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+3804775cb316fbb8088a06f79f50b8141d29573e")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+2c9172d24353ace0190955be23dce5c4417511fa")]
 [assembly: System.Reflection.AssemblyProductAttribute("ReadBlob")]
 [assembly: System.Reflection.AssemblyTitleAttribute("ReadBlob")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
