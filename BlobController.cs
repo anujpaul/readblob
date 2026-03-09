@@ -31,8 +31,8 @@ public class BlobController : ControllerBase
         try
         {
             var blobServiceClient = new BlobServiceClient(
-                new Uri($"https://{req.StorageAccount}.blob.core.windows.net")
-                 //new DefaultAzureCredential()
+                new Uri($"https://{req.StorageAccount}.blob.core.windows.net"),
+                 new DefaultAzureCredential()
             );
 
             var container = await blobServiceClient.CreateBlobContainerAsync(req.ContainerName);
