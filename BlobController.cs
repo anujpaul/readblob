@@ -47,9 +47,19 @@ public class BlobController : ControllerBase
         {
             return BadRequest($"Some error occured : {ex.Message}");
         }
+    }
 
-        
+    [HttpPost("deletecontainer")]
+    public async Task<IActionResult> deleteContainer([FromBody] BlobRequest req)
+    {
+        BlobServiceClient serviceClient = new(
+            new Uri($"https://{req.StorageAccount}.blob.core.windows.net"),
+            new DefaultAzureCredential()
+        );
 
+        await serviceClient.DeleteBlobContainerAsync(req.ContainerName);
+
+        return Ok("");
     }
 
     [HttpPost("readblob")]
@@ -169,7 +179,7 @@ public class BlobController : ControllerBase
         return Ok(property);
     }
 
-    public BlobContainerClient getContainer(BlobRequest req)
+    private BlobContainerClient getContainer(BlobRequest req)
     {
         return new BlobServiceClient(
                 new Uri($"https://{req.StorageAccount}.blob.core.windows.net"),
