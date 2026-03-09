@@ -50,14 +50,14 @@ public class BlobController : ControllerBase
     }
 
     [HttpPost("deletecontainer")]
-    public IActionResult deleteContainer([FromBody] BlobRequest req)
+    public async Task<IActionResult> deleteContainer([FromBody] BlobRequest req)
     {
         BlobServiceClient serviceClient = new(
             new Uri($"https://{req.StorageAccount}.blob.core.windows.net"),
             new DefaultAzureCredential()
         );
 
-        serviceClient.DeleteBlobContainerAsync(req.ContainerName);
+        await serviceClient.DeleteBlobContainerAsync(req.ContainerName);
 
         return Ok("");
     }
@@ -179,7 +179,7 @@ public class BlobController : ControllerBase
         return Ok(property);
     }
 
-    public BlobContainerClient getContainer(BlobRequest req)
+    private BlobContainerClient getContainer(BlobRequest req)
     {
         return new BlobServiceClient(
                 new Uri($"https://{req.StorageAccount}.blob.core.windows.net"),
