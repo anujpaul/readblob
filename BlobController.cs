@@ -47,9 +47,19 @@ public class BlobController : ControllerBase
         {
             return BadRequest($"Some error occured : {ex.Message}");
         }
+    }
 
-        
+    [HttpPost("deletecontainer")]
+    public IActionResult deleteContainer([FromBody] BlobRequest req)
+    {
+        BlobServiceClient serviceClient = new(
+            new Uri($"https://{req.StorageAccount}.blob.core.windows.net"),
+            new DefaultAzureCredential()
+        );
 
+        serviceClient.DeleteBlobContainerAsync(req.ContainerName);
+
+        return Ok("");
     }
 
     [HttpPost("readblob")]
